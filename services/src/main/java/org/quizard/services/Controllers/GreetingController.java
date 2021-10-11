@@ -1,8 +1,8 @@
-package org.quizard.services.Controllers;
+package org.quizard.services.controllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.quizard.services.Models.Greeting;
+import org.quizard.services.domain.Greeting;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

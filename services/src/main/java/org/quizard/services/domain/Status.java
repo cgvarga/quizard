@@ -1,4 +1,4 @@
-package org.quizard.services.Models;
+package org.quizard.services.domain;
 
 public class Status {
     private String status = "OK";

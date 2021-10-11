@@ -1,4 +1,4 @@
-package org.quizard.services.Models;
+package org.quizard.services.domain;
 
 public class Greeting {
     private final long id;
