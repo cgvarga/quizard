@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.quizard.services.domain.Answer;
 import org.quizard.services.domain.Question;
-import org.quizard.services.service.AnswerService;
-import org.quizard.services.service.QuestionService;
+import org.quizard.services.domain.Quiz;
+import org.quizard.services.service.QuizService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,19 +27,19 @@ public class ServicesApplication {
 
 	//populate DB with default data
 	@Bean
-	CommandLineRunner runner(QuestionService questionService) {
+	CommandLineRunner runner(QuizService quizService) {
 		return args -> {
 			ObjectMapper mapper = new ObjectMapper();
 
-			TypeReference<List<Question>> typeReference = new TypeReference<List<Question>>(){};
+			TypeReference<List<Quiz>> typeReference = new TypeReference<List<Quiz>>(){};
 			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/QuestionsDB.json");
 
 			try {
-				List<Question> questions = mapper.readValue(inputStream, typeReference);
-				questionService.save(questions);
-				System.out.println("Questions saved");
+				List<Quiz> quizes = mapper.readValue(inputStream, typeReference);
+				quizService.addQuizes(quizes);
+				System.out.println("Quiz saved");
 			} catch (IOException err) {
-				System.out.println("Unable to save questions: " + err.getMessage());
+				System.out.println("Unable to save Quiz: " + err.getMessage());
 			}
 		};
 	}

@@ -42,15 +42,16 @@ public class QuestionService {
         return "deleted question " + id;
     }
 
-    /* public Question update(Question question) {
+    public Question update(Question question) {
         Question existingQuestion = questionRepository.findById(question.getId()).orElse(null);
         if (existingQuestion != null) {
 
-            existingQuestion.setValue(question.getvalue());
+            existingQuestion.setValue(question.getValue());
+            existingQuestion.setAnswers(question.getAnswers());
             questionRepository.save(existingQuestion);
             return existingQuestion;
         }
         return null;
 
-    } */
+    }
 }
