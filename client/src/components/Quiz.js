@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import { Container } from 'react-bootstrap';
 import QuizService from '../services/QuizService';
 
 export default class Quiz extends React.Component {
@@ -7,19 +7,33 @@ export default class Quiz extends React.Component {
 		super();
 
 		this.state = {
-			title: '',
-			questions: [],
+			quizes: [],
 		};
 	}
 
 	componentDidMount() {
-		// error here with 'then'
 		QuizService.getQuizes().then((res) => {
-			console.log(res);
+			this.setState({ quizes: res.data });
 		});
 	}
 
+	//TODO refactor this into Quiz List and Quiz component
+	//link to quiz page with questions and radio button
 	render() {
-		return <div>QUIZ</div>;
+		return (
+			<>
+				<Container>
+					<h1>Quizes</h1>
+					{this.state.quizes.map((quiz) => (
+						<ul>
+							<li>Title: {quiz.title}</li>
+							{quiz.questions.map((question) => (
+								<ol>{question.value}</ol>
+							))}
+						</ul>
+					))}
+				</Container>
+			</>
+		);
 	}
 }
