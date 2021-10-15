@@ -1,39 +1,15 @@
-import React from 'react';
-import { Container } from 'react-bootstrap';
-import QuizService from '../services/QuizService';
+import React, { useState, useEffect } from 'react';
 
-export default class Quiz extends React.Component {
-	constructor() {
-		super();
+const Quiz = () => {
+	// const { questions } = quiz;
+	return (
+		<div>
+			{/* {questions.map((question) => (
+				<p>{questions.value}</p>
+			))} */}
+			<p>Sample Quiz</p>
+		</div>
+	);
+};
 
-		this.state = {
-			quizes: [],
-		};
-	}
-
-	componentDidMount() {
-		QuizService.getQuizes().then((res) => {
-			this.setState({ quizes: res.data });
-		});
-	}
-
-	//TODO refactor this into Quiz List and Quiz component
-	//link to quiz page with questions and radio button
-	render() {
-		return (
-			<>
-				<Container>
-					<h1>Quizes</h1>
-					{this.state.quizes.map((quiz) => (
-						<ul>
-							<li>Title: {quiz.title}</li>
-							{quiz.questions.map((question) => (
-								<ol>{question.value}</ol>
-							))}
-						</ul>
-					))}
-				</Container>
-			</>
-		);
-	}
-}
+export default Quiz;
